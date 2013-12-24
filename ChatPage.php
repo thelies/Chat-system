@@ -1,50 +1,39 @@
 <?php
 	//echo 'cong hoa xa hoi';
-	try{
-		$host='localhost';
-		$dbname='ex1';
-		$user='hoanle';
-		$pass='123456';
-
-		//Connect DB
-		$db = new PDO ('mysql:host='.$host.';dbname='.$dbname, $user, $pass);
-
-		//Report ERROR
-		//$db->setAttribute (PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	} catch (Exception $exc){
-		echo 'Error happened!';
-		file_put_contents('log.txt', $exc->getMessage(). '\r\n', FILE_APPEND);
-	}
-	
-		if(isset($_POST['messageBox'])){
-			//echo 'Trong khi nhan $_POST';
-			$message=$_POST['messageBox'];
-			//echo $message;
-			$st = $db->prepare ('INSERT INTO Messages (Username, Text) VALUES (?,?)');
-			$data = array ('DefaultUser', $message );
-			$st->execute($data);
-		}
-
-	$statement = $db->query ('SELECT Username, Text FROM Messages');
+	include "OpenConnection.php";
+	$statement = $db->query ('SELECT ID, Username, Text FROM Messages');
 	$statement->execute();
 	$statement->setFetchMode (PDO::FETCH_ASSOC);
 	//echo 'So hang lay duoc'.$statement->rowCount();
 ?>
 <html>
-	<title>Simple chat system</title>
+	<head>
+		<title>Simple chat system</title>
+		<script type="text/javascript" src="SimpleChat.js"></script>
+	</head>
+
 	<body>
 		<h1>Simple chat system</h1>
-		<form action='ChatPage.php' method='post'>
-			<div rows='10' cols='30'>
+		<!--<form action='ChatPage.php' method='post'>-->
+			<div>
 				<?php
 					while ($row = $statement->fetch()){
-						echo $row['Username'].'=>';
-						echo $row['Text'].'<br>';
+						echo '<div id="divMess_'.$row['ID'].'">';
+							echo $row['Username'];
+							echo '<div id="divText_'.$row['ID'].'">'.$row['Text'].'</div>';
+							//echo $row['Text'].'<br>';
+							echo '<button id="edit_'.$row['ID'].'" onclick="Func_Edit('.$row['ID'].')">Edit</button>';
+							echo '<button id="delete_'.$row['ID'].'" onclick="Func_Delete('.$row['ID'].')">Delete</button><br>';
+						echo '</div>';
 					}
 				?>
 			</div><br>
-			Messages: <input type='text' name='messageBox'>
-			<input type='submit' value='send'>
-		</form>
+			Messages: <input type='text' name='messageBox' id='message'>
+			<input type='submit' value='send' onclick="Func_Submit()">
+		<!--</form>-->
 	</body>
 </html>
+<?php 
+//Thieu dong connect voi mysql
+	include "CloseConnection.php";
+?>
