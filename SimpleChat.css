@@ -14,13 +14,32 @@ h1{
 	padding-top: 30px;
 	height: 80px;
 }
-#wrapper, .divMess, .divText, .divButton{
-	border: 1px solid;
+#wrapper, .divMess{
+	border-bottom: 1px solid;
 }
 #inputBox{
 	height: 100px;
+	padding-top: 50px;
+	text-align: center;
 }
 .divButton{
 	text-align: right;
 	margin-right: 50px;
+	margin-bottom: 5px;
+}
+.divText{
+	padding-left: 10px;
+	height: 40px;
+}
+.button{
+	width: 50px;
+	height: 30px;
+}
+#message{
+	width: 350px;
+	height: 50px;
+}
+#submit{
+	width: 60px;
+	height: 40px;
 }

@@ -95,8 +95,8 @@ function myTimer()
 
 				var divButton=document.createElement('div');
 				divButton.className="divButton";
-				divButton.innerHTML="<button onclick=Func_Edit("+ID+") >Edit</button>"
-									+"<button onclick=Func_Delete("+ID+") >Delete</button>";
+				divButton.innerHTML="<button class='button' onclick=Func_Edit("+ID+") >Edit</button>"
+									+"<button class= 'button' onclick=Func_Delete("+ID+") >Delete</button>";
 
 				divMess.appendChild(divText);
 				divMess.appendChild(divButton);

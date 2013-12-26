@@ -12,7 +12,7 @@
 			</div>
 			<div id="inputBox">
 				Messages: <input type='text' name='messageBox' id='message' onkeypress="DetectEnter()">
-				<input type='submit' value='send' onclick="Func_Submit()">
+				<input id= 'submit' type='submit' value='send' onclick="Func_Submit()">
 			</div>
 		</div>
 	</body>
