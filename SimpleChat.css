@@ -1,0 +1,26 @@
+/*Css for SimpleChat	*/
+
+#chatWindows{
+	width: 600px;
+	margin: 50 auto;
+	border: 1px solid;
+}
+h1{
+	color: blue;
+	text-align: center;
+	background-color: yellow;
+	border: 1px solid;
+	margin-top: 0px;
+	padding-top: 30px;
+	height: 80px;
+}
+#wrapper, .divMess, .divText, .divButton{
+	border: 1px solid;
+}
+#inputBox{
+	height: 100px;
+}
+.divButton{
+	text-align: right;
+	margin-right: 50px;
+}
