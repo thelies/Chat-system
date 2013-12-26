@@ -9,6 +9,48 @@ function Func_Edit(messageID){
 	document.getElementById(editID).innerHTML="Editing";
 }
 
+//test myTimer()
+function reload(){
+	setInterval(function(){myTimer()}, 1000);
+}
+function myTimer()
+{
+	//var param="x=1";
+	var xmlhttp;
+	if (window.XMLHttpRequest)
+	  {// code for IE7+, Firefox, Chrome, Opera, Safari
+	  	xmlhttp=new XMLHttpRequest();
+	  }
+	else
+	  {// code for IE6, IE5
+	  	xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	  }
+
+	xmlhttp.onreadystatechange=function(){
+		if (xmlhttp.readyState==4 && xmlhttp.status==200){
+			document.getElementById("demo").innerHTML="";
+			var receivedText=xmlhttp.responseText;
+			var message=eval("(" + receivedText + ")")
+			//alert(message.text.length);
+			for(var i=0; i<message.text.length;i++)
+			{
+				var div=document.createElement('div');
+				div.id="divMess_"+message.text[i].ID;
+				div.innerHTML=message.text[i].Message+message.text[i].Username;
+				document.getElementById("demo").appendChild(div);	
+			}
+			
+			//document.getElementById("demo").innerHTML=message.text[0].Username;
+		}
+	}
+
+	xmlhttp.open("POST","HandleTest.php",true);
+	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xmlhttp.send();
+	
+}
+
+
 //Delete message
 function Func_Delete(messageID){
 
